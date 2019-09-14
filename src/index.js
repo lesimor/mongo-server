@@ -3,9 +3,9 @@ const Router = require('koa-router');
 
 const app = new Koa();
 const router = new Router();
-const talkative = require('./talkative');
+const api = require('./api');
 
-router.use('/talkative', talkative.routes());
+router.use('/api', api.routes());
 
 app.use(router.routes()).use(router.allowedMethods());
 
