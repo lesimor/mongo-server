@@ -1,0 +1,19 @@
+{
+  "name": "mongo-server",
+  "version": "1.0.0",
+  "description": "Server for mongoDB",
+  "main": "index.js",
+  "author": "Byungwook Kang",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.8.1",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  },
+  "scripts": {
+    "start": "node src",
+    "start:dev": "nodemon --watch src/ src/index.js"
+  }
+}
