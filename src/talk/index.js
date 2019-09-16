@@ -1,8 +1,8 @@
 const Router = require('koa-router');
 
-const talkativeAPI = new Router();
-const themes = require('./api/themes');
+const themeAPI = new Router();
+const themes = require('./theme/index');
 
-talkativeAPI.use('/themes', themes.routes());
+themeAPI.use('/theme', themes.routes());
 
-module.exports = talkativeAPI;
+module.exports = themeAPI;

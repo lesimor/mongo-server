@@ -5,13 +5,13 @@ const Router = require('koa-router');
 
 const app = new Koa();
 const router = new Router();
-const api = require('./talk');
+const talk = require('./talk');
 const bodyParser = require('koa-bodyparser');
 
 
 app.use(bodyParser()); // 바디파서 적용, 라우터 적용코드보다 상단에 있어야합니다.
 
-router.use('/talk', api.routes());
+router.use('/talk', talk.routes());
 
 app.use(router.routes()).use(router.allowedMethods());
 

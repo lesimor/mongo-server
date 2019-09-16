@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const Theme = new Schema({
+const Model = new Schema({
     question: String,
 });
 
-module.exports = mongoose.model('Theme', Theme);
+module.exports = mongoose.model('Theme', Model);

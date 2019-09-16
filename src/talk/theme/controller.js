@@ -1,4 +1,4 @@
-const Theme = require('talk/models/theme');
+const Theme = require('talk/theme/model');
 
 exports.create = async (ctx) => {
     // request body 에서 값들을 추출합니다
@@ -25,4 +25,22 @@ exports.create = async (ctx) => {
 
     // 저장한 결과를 반환합니다.
     ctx.body = theme;
+};
+
+exports.list = async (ctx) => {
+    // 변수를 미리 만들어줍니다.
+    // (let 이나 const 는 scope 가 블록단위이기 때문에, try 바깥에 선언을 해줍니다)
+
+    let themes;
+
+    try {
+        // 데이터를 조회합니다.
+        // .exec() 를 뒤에 붙여줘야 실제로 데이터베이스에 요청이 됩니다.
+        // 반환값은 Promise 이므로 await 을 사용 할 수 있습니다.
+        themes = await Theme.find().exec();
+    } catch (e) {
+        return ctx.throw(500, e);
+    }
+
+    ctx.body = themes;
 };
