@@ -1,16 +1,40 @@
+require('dotenv').config();
+
 const Koa = require('koa');
 const Router = require('koa-router');
 
 const app = new Koa();
 const router = new Router();
-const api = require('./api');
+const api = require('./talk');
+const bodyParser = require('koa-bodyparser');
 
-router.use('/api', api.routes());
+
+app.use(bodyParser()); // 바디파서 적용, 라우터 적용코드보다 상단에 있어야합니다.
+
+router.use('/talk', api.routes());
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(4000, () => {
-    console.log('heurm server is listening to port 4000');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise; // Node 의 네이티브 Promise 사용
+// mongodb 연결
+const url = `${process.env.MONGO_URI}/${process.env.TALK_DB}`;
+mongoose.connect(url, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+}).then(
+    (response) => {
+        console.log(`Successfully connected to mongodb => ${url}`);
+    }
+).catch(e => {
+    console.error(e);
 });
+
+const port = process.env.PORT || 4000; // PORT 값이 설정되어있지 않다면 4000 을 사용합니다.
+
+app.listen(port, () => {
+        console.log(`heurm server is listening to port ${port}`);
+    }
+);
 
 module.exports = router;

@@ -6,14 +6,18 @@
   "author": "Byungwook Kang",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.1.0",
+    "js-yaml": "^3.13.1",
     "koa": "^2.8.1",
-    "koa-router": "^7.4.0"
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.7.1"
   },
   "devDependencies": {
     "eslint": "^5.16.0"
   },
   "scripts": {
-    "start": "node src",
-    "start:dev": "nodemon --watch src/ src/index.js"
+    "start": "NODE_PATH=src node src",
+    "start:dev": "NODE_PATH=src nodemon --watch src/ src/index.js"
   }
 }
