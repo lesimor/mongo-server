@@ -42,5 +42,5 @@ exports.list = async (ctx) => {
         return ctx.throw(500, e);
     }
 
-    ctx.body = themes;
+    ctx.body = {results: themes};
 };
